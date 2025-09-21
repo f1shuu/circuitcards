@@ -14,6 +14,11 @@ export default {
     },
     android: {
       'package': 'com.f1shu.circuitcards'
+    },
+    extra: {
+      'eas': {
+        'projectId': '029ea93e-e19a-4463-89bf-642e0985c0d6'
+      }
     }
   }
 }
