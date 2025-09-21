@@ -73,7 +73,7 @@ export const circuits = [
     },
     {
         id: 7,
-        name: 'Imola (Autodromo Enzo e Dino Ferrari)',
+        name: 'Autodromo Enzo e Dino Ferrari',
         country: 'Italy',
         city: 'Imola',
         length: 4.909,
@@ -241,7 +241,7 @@ export const circuits = [
     },
     {
         id: 21,
-        name: 'Interlagos (Autódromo José Carlos Pace)',
+        name: 'Autódromo José Carlos Pace',
         country: 'Brazil',
         city: 'São Paulo',
         length: 4.309,

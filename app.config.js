@@ -4,11 +4,11 @@ export default {
     slug: 'CircuitCards',
     version: '1.0.0',
     orientation: 'portrait',
-    icon: './assets/icon.png',
+    icon: './assets/images/icon.png',
     userInterfaceStyle: 'dark',
     newArchEnabled: true,
     splash: {
-      'image': './assets/splash.png',
+      'image': './assets/images/splash.png',
       'resizeMode': 'contain',
       'backgroundColor': '#16141F'
     },
