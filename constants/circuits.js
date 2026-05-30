@@ -19,9 +19,9 @@ export const circuits = [
         length: 5.451,
         numberOfLaps: 56,
         numberOfTurns: 16,
-        recordTime: '1:34.742',
-        recordDriver: 'Pierre Gasly',
-        recordYear: 2019
+        recordTime: '1:32.238',
+        recordDriver: 'Michael Schumacher',
+        recordYear: 2004
     },
     {
         id: 3,
@@ -32,83 +32,23 @@ export const circuits = [
         numberOfLaps: 53,
         numberOfTurns: 18,
         recordTime: '1:30.965',
-        recordDriver: 'Kimi Raikkonen',
-        recordYear: 2005
+        recordDriver: 'Andrea Kimi Antonelli',
+        recordYear: 2025
     },
     {
         id: 4,
-        name: 'Bahrain International Circuit',
-        country: 'Bahrain',
-        city: 'Sakhir',
-        length: 5.412,
-        numberOfLaps: 57,
-        numberOfTurns: 15,
-        recordTime: '1:32.014',
-        recordDriver: 'Max Verstappen',
-        recordYear: 2020
-    },
-    {
-        id: 5,
-        name: 'Jeddah Corniche Circuit',
-        country: 'Saudi Arabia',
-        city: 'Jeddah',
-        length: 6.174,
-        numberOfLaps: 50,
-        numberOfTurns: 27,
-        recordTime: '1:30.734',
-        recordDriver: 'Lewis Hamilton',
-        recordYear: 2021
-    },
-    {
-        id: 6,
         name: 'Miami International Autodrome',
         country: 'USA',
         city: 'Miami',
         length: 5.412,
         numberOfLaps: 57,
         numberOfTurns: 19,
-        recordTime: '1:28.708',
+        recordTime: '1:29.708',
         recordDriver: 'Max Verstappen',
         recordYear: 2023
     },
     {
-        id: 7,
-        name: 'Autodromo Enzo e Dino Ferrari',
-        country: 'Italy',
-        city: 'Imola',
-        length: 4.909,
-        numberOfLaps: 63,
-        numberOfTurns: 19,
-        recordTime: '1:18.451',
-        recordDriver: 'Lewis Hamilton',
-        recordYear: 2020
-    },
-    {
-        id: 8,
-        name: 'Circuit de Monaco',
-        country: 'Monaco',
-        city: 'Monte Carlo',
-        length: 3.337,
-        numberOfLaps: 78,
-        numberOfTurns: 19,
-        recordTime: '1:12.909',
-        recordDriver: 'Lewis Hamilton',
-        recordYear: 2021
-    },
-    {
-        id: 9,
-        name: 'Circuit de Catalunya',
-        country: 'Spain',
-        city: 'Barcelona',
-        length: 4.657,
-        numberOfLaps: 66,
-        numberOfTurns: 16,
-        recordTime: '1:15.743',
-        recordDriver: 'Oscar Piastri',
-        recordYear: 2025
-    },
-    {
-        id: 10,
+        id: 5,
         name: 'Circuit Gilles Villeneuve',
         country: 'Canada',
         city: 'Montreal',
@@ -120,7 +60,31 @@ export const circuits = [
         recordYear: 2019
     },
     {
-        id: 11,
+        id: 6,
+        name: 'Circuit de Monaco',
+        country: 'Monaco',
+        city: 'Monte Carlo',
+        length: 3.337,
+        numberOfLaps: 78,
+        numberOfTurns: 19,
+        recordTime: '1:12.909',
+        recordDriver: 'Lewis Hamilton',
+        recordYear: 2021
+    },
+    {
+        id: 7,
+        name: 'Circuit de Catalunya',
+        country: 'Spain',
+        city: 'Barcelona',
+        length: 4.657,
+        numberOfLaps: 66,
+        numberOfTurns: 16,
+        recordTime: '1:15.743',
+        recordDriver: 'Oscar Piastri',
+        recordYear: 2025
+    },
+    {
+        id: 8,
         name: 'Red Bull Ring',
         country: 'Austria',
         city: 'Spielberg',
@@ -132,7 +96,7 @@ export const circuits = [
         recordYear: 2025
     },
     {
-        id: 12,
+        id: 9,
         name: 'Silverstone Circuit',
         country: 'United Kingdom',
         city: 'Silverstone',
@@ -144,19 +108,19 @@ export const circuits = [
         recordYear: 2020
     },
     {
-        id: 13,
+        id: 10,
         name: 'Circuit de Spa-Francorchamps',
         country: 'Belgium',
         city: 'Spa',
         length: 7.004,
         numberOfLaps: 44,
         numberOfTurns: 19,
-        recordTime: '1:46.250',
+        recordTime: '1:44.701',
         recordDriver: 'Sergio Perez',
         recordYear: 2024
     },
     {
-        id: 14,
+        id: 11,
         name: 'Hungaroring',
         country: 'Hungary',
         city: 'Budapest',
@@ -168,7 +132,7 @@ export const circuits = [
         recordYear: 2020
     },
     {
-        id: 15,
+        id: 12,
         name: 'Circuit Zandvoort',
         country: 'Netherlands',
         city: 'Zandvoort',
@@ -180,7 +144,7 @@ export const circuits = [
         recordYear: 2021
     },
     {
-        id: 16,
+        id: 13,
         name: 'Autodromo Nazionale Monza',
         country: 'Italy',
         city: 'Monza',
@@ -192,7 +156,19 @@ export const circuits = [
         recordYear: 2025
     },
     {
-        id: 17,
+        id: 14,
+        name: 'Circuito de Madring',
+        country: 'Spain',
+        city: 'Madrid',
+        length: 5.416,
+        numberOfLaps: 57,
+        numberOfTurns: 22,
+        recordTime: 'N/A',
+        recordDriver: 'N/A',
+        recordYear: 'N/A'
+    },
+    {
+        id: 15,
         name: 'Baku City Circuit',
         country: 'Azerbaijan',
         city: 'Baku',
@@ -204,19 +180,19 @@ export const circuits = [
         recordYear: 2019
     },
     {
-        id: 18,
+        id: 16,
         name: 'Marina Bay Street Circuit',
         country: 'Singapore',
         city: 'Singapore',
-        length: 4.940,
+        length: 4.927,
         numberOfLaps: 62,
         numberOfTurns: 19,
-        recordTime: '1:34.486',
-        recordDriver: 'Daniel Ricciardo',
-        recordYear: 2013
+        recordTime: '1:33.808',
+        recordDriver: 'Lewis Hamilton',
+        recordYear: 2025
     },
     {
-        id: 19,
+        id: 17,
         name: 'Circuit of the Americas',
         country: 'USA',
         city: 'Austin',
@@ -228,7 +204,7 @@ export const circuits = [
         recordYear: 2019
     },
     {
-        id: 20,
+        id: 18,
         name: 'Autodromo Hermanos Rodríguez',
         country: 'Mexico',
         city: 'Mexico City',
@@ -240,31 +216,31 @@ export const circuits = [
         recordYear: 2021
     },
     {
-        id: 21,
+        id: 19,
         name: 'Autódromo José Carlos Pace',
         country: 'Brazil',
         city: 'São Paulo',
         length: 4.309,
         numberOfLaps: 71,
         numberOfTurns: 15,
-        recordTime: '1:11.010',
-        recordDriver: 'Sergio Perez',
-        recordYear: 2021
+        recordTime: '1:10.540',
+        recordDriver: 'Valtteri Bottas',
+        recordYear: 2018
     },
     {
-        id: 22,
+        id: 20,
         name: 'Las Vegas Street Circuit',
         country: 'USA',
         city: 'Las Vegas',
         length: 6.201,
         numberOfLaps: 50,
         numberOfTurns: 17,
-        recordTime: '1:34.876',
-        recordDriver: 'Lando Norris',
-        recordYear: 2023
+        recordTime: '1:33.365',
+        recordDriver: 'Max Verstappen',
+        recordYear: 2025
     },
     {
-        id: 23,
+        id: 21,
         name: 'Lusail International Circuit',
         country: 'Qatar',
         city: 'Lusail',
@@ -276,14 +252,14 @@ export const circuits = [
         recordYear: 2024
     },
     {
-        id: 24,
+        id: 22,
         name: 'Yas Marina Circuit',
         country: 'United Arab Emirates',
         city: 'Abu Dhabi',
         length: 5.281,
         numberOfLaps: 58,
         numberOfTurns: 16,
-        recordTime: '1:26.103',
+        recordTime: '1:25.637',
         recordDriver: 'Kevin Magnussen',
         recordYear: 2024
     }
