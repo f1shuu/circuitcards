@@ -1,41 +1,76 @@
 import React from 'react';
-import { View, Image, TouchableOpacity, FlatList, Dimensions, Animated } from 'react-native';
+import { View, Text, Image, TouchableOpacity, FlatList, Dimensions, Animated, Button } from 'react-native';
+import Checkbox from 'expo-checkbox';
 
 import { circuits } from './constants/circuits';
 import colors from './constants/colors';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
-const images = {
-    1: require('./assets/circuits/1.jpg'),
-    2: require('./assets/circuits/2.jpg'),
-    3: require('./assets/circuits/3.jpg'),
-    4: require('./assets/circuits/4.jpg'),
-    5: require('./assets/circuits/5.jpg'),
-    6: require('./assets/circuits/6.jpg'),
-    7: require('./assets/circuits/7.jpg'),
-    8: require('./assets/circuits/8.jpg'),
-    9: require('./assets/circuits/9.jpg'),
-    10: require('./assets/circuits/10.jpg'),
-    11: require('./assets/circuits/11.jpg'),
-    12: require('./assets/circuits/12.jpg'),
-    13: require('./assets/circuits/13.jpg'),
-    14: require('./assets/circuits/14.jpg'),
-    15: require('./assets/circuits/15.jpg'),
-    16: require('./assets/circuits/16.jpg'),
-    17: require('./assets/circuits/17.jpg'),
-    18: require('./assets/circuits/18.jpg'),
-    19: require('./assets/circuits/19.jpg'),
-    20: require('./assets/circuits/20.jpg'),
-    21: require('./assets/circuits/21.jpg'),
-    22: require('./assets/circuits/22.jpg'),
-    23: require('./assets/circuits/23.jpg'),
-    24: require('./assets/circuits/24.jpg')
+const images = [
+    require('./assets/circuits/1.webp'),
+    require('./assets/circuits/2.webp'),
+    require('./assets/circuits/3.webp'),
+    require('./assets/circuits/4.webp'),
+    require('./assets/circuits/5.webp'),
+    require('./assets/circuits/6.webp'),
+    require('./assets/circuits/7.webp'),
+    require('./assets/circuits/8.webp'),
+    require('./assets/circuits/9.webp'),
+    require('./assets/circuits/10.webp'),
+    require('./assets/circuits/11.webp'),
+    require('./assets/circuits/12.webp'),
+    require('./assets/circuits/13.webp'),
+    require('./assets/circuits/14.webp'),
+    require('./assets/circuits/15.webp'),
+    require('./assets/circuits/16.webp'),
+    require('./assets/circuits/17.webp'),
+    require('./assets/circuits/18.webp'),
+    require('./assets/circuits/19.webp'),
+    require('./assets/circuits/20.webp'),
+    require('./assets/circuits/21.webp'),
+    require('./assets/circuits/22.webp')
+]
+
+const shuffleCircuits = (items) => {
+    const shuffled = [...items];
+
+    for (let index = shuffled.length - 1; index > 0; index--) {
+        const randomIndex = Math.floor(Math.random() * (index + 1));
+        [shuffled[index], shuffled[randomIndex]] = [shuffled[randomIndex], shuffled[index]];
+    }
+
+    return shuffled;
 }
 
 export default function App() {
     const pan = React.useRef(new Animated.ValueXY()).current;
+    const listRef = React.useRef(null);
     const [scrollViewWidth, setScrollViewWidth] = React.useState(0);
+    const [shuffledCircuits, setShuffledCircuits] = React.useState(() => shuffleCircuits(circuits));
+    const [useOriginalOrder, setUseOriginalOrder] = React.useState(false);
+    const [activeIndex, setActiveIndex] = React.useState(0);
+    const visibleCircuits = useOriginalOrder ? circuits : shuffledCircuits;
+
+    const updateActiveIndex = (event) => {
+        const index = Math.round(event.nativeEvent.contentOffset.x / SCREEN_WIDTH);
+        setActiveIndex(Math.min(Math.max(index, 0), visibleCircuits.length - 1));
+    }
+
+    const shuffleCards = () => {
+        setShuffledCircuits(shuffleCircuits(circuits));
+        setActiveIndex(0);
+        setUseOriginalOrder(false);
+        pan.setValue({ x: 0, y: 0 });
+        listRef.current?.scrollToOffset({ offset: 0, animated: false });
+    }
+
+    const handleOriginalOrderChange = (checked) => {
+        setUseOriginalOrder(checked);
+        setActiveIndex(0);
+        pan.setValue({ x: 0, y: 0 });
+        listRef.current?.scrollToOffset({ offset: 0, animated: false });
+    }
 
     const styles = {
         item: {
@@ -50,8 +85,8 @@ export default function App() {
             alignItems: 'center'
         },
         image: {
-            width: '100%',
-            height: '100%'
+            resizeMode: 'center',
+            width: '100%'
         },
         section: {
             height: '40%',
@@ -70,15 +105,24 @@ export default function App() {
             color: colors.primary,
         },
         row: {
-            height: '20%',
             flexDirection: 'row',
-            gap: 10
+            alignItems: 'center',
+            gap: 10,
+            marginBottom: 20
         },
         container: {
             flex: 1,
-            flexDirection: 'row',
+            backgroundColor: colors.secondary,
+            flexDirection: 'column',
             alignItems: 'center',
-            backgroundColor: colors.secondary
+            paddingVertical: 100
+        },
+        button: {
+            marginTop: 100,
+            backgroundColor: colors.primary,
+            paddingHorizontal: 25,
+            paddingVertical: 20,
+            borderRadius: 10
         }
     }
 
@@ -125,7 +169,7 @@ export default function App() {
             >
                 <TouchableOpacity activeOpacity={0.9} onPress={handleFlip}>
                     <Animated.View style={[styles.item, { transform: [{ rotateY: frontInterpolate }], position: 'absolute' }]}>
-                        <Image source={images[item.id]} style={styles.image} />
+                        <Image source={images[item.id - 1]} style={styles.image} />
                     </Animated.View>
                     <Animated.View style={[styles.item, { backgroundColor: colors.secondary, transform: [{ rotateY: backInterpolate }] }]}>
                         <Animated.View style={styles.section}>
@@ -137,7 +181,7 @@ export default function App() {
                                 <Animated.Text style={styles.text}>{item.city} ({item.country})</Animated.Text>
                             </Animated.View>
                         </Animated.View>
-                        <Animated.View style={styles.row}>
+                        <Animated.View style={[styles.row, { height: '20%' }]}>
                             <Animated.View>
                                 <Animated.Text style={styles.smallText}>LENGTH (KM):</Animated.Text>
                                 <Animated.Text style={styles.text}>{item.length}</Animated.Text>
@@ -165,8 +209,18 @@ export default function App() {
 
     return (
         <View style={styles.container}>
+            <View style={styles.row}>
+                <Checkbox
+                    value={useOriginalOrder}
+                    onValueChange={handleOriginalOrderChange}
+                    color={useOriginalOrder ? colors.primary : undefined}
+                />
+                <Text style={[styles.text, { marginLeft: 10 }]}>Use F1 2026 order</Text>
+            </View>
+
             <FlatList
-                data={circuits}
+                ref={listRef}
+                data={visibleCircuits}
                 keyExtractor={item => item.id.toString()}
                 renderItem={({ item, index }) => (
                     <Card item={item} index={index} pan={pan} />
@@ -186,7 +240,13 @@ export default function App() {
                     setScrollViewWidth(e.nativeEvent.layout.width);
                 }}
                 onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: pan.x } } }], { useNativeDriver: false })}
+                onMomentumScrollEnd={updateActiveIndex}
+                onScrollEndDrag={updateActiveIndex}
             />
+            <Text style={styles.text}>{activeIndex + 1}/{visibleCircuits.length}</Text>
+            <TouchableOpacity onPress={shuffleCards} style={styles.button}>
+                <Text style={styles.text}>Shuffle</Text>
+            </TouchableOpacity>
         </View>
     )
 }

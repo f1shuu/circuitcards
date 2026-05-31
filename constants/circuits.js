@@ -32,7 +32,7 @@ export const circuits = [
         numberOfLaps: 53,
         numberOfTurns: 18,
         recordTime: '1:30.965',
-        recordDriver: 'Andrea Kimi Antonelli',
+        recordDriver: 'Kimi Antonelli',
         recordYear: 2025
     },
     {
