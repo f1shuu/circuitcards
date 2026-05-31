@@ -82,7 +82,9 @@ export default function App() {
             overflow: 'hidden',
             backfaceVisibility: 'hidden',
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
+            padding: 20,
+            gap: 20
         },
         image: {
             resizeMode: 'center',
@@ -94,33 +96,38 @@ export default function App() {
             alignItems: 'center',
             paddingHorizontal: 30
         },
-        text: {
+        largeText: {
             fontFamily: 'F1',
-            fontSize: 18,
-            color: colors.white
+            fontSize: 36,
+            color: colors.white,
+            textAlign: 'center'
         },
         smallText: {
             fontFamily: 'F1',
             fontSize: 9,
             color: colors.primary,
         },
+        text: {
+            fontFamily: 'F1',
+            fontSize: 18,
+            color: colors.white
+        },
         row: {
             flexDirection: 'row',
             alignItems: 'center',
-            gap: 10,
-            marginBottom: 20
+            gap: 10
         },
         container: {
             flex: 1,
             backgroundColor: colors.secondary,
             flexDirection: 'column',
+            justifyContent: 'space-between',
             alignItems: 'center',
             paddingVertical: 100
         },
         button: {
-            marginTop: 100,
             backgroundColor: colors.primary,
-            paddingHorizontal: 25,
+            paddingHorizontal: 40,
             paddingVertical: 20,
             borderRadius: 10
         }
@@ -171,17 +178,17 @@ export default function App() {
                     <Animated.View style={[styles.item, { transform: [{ rotateY: frontInterpolate }], position: 'absolute' }]}>
                         <Image source={images[item.id - 1]} style={styles.image} />
                     </Animated.View>
-                    <Animated.View style={[styles.item, { backgroundColor: colors.secondary, transform: [{ rotateY: backInterpolate }] }]}>
+                    <Animated.View style={[styles.item, { transform: [{ rotateY: backInterpolate }] }]}>
                         <Animated.View style={styles.section}>
-                            <Animated.Text style={[styles.text, { fontSize: 36 }]}>{item.name}</Animated.Text>
+                            <Animated.Text style={styles.largeText}>{item.name}</Animated.Text>
                         </Animated.View>
-                        <Animated.View style={{ height: '20%' }}>
+                        <Animated.View>
                             <Animated.View>
                                 <Animated.Text style={styles.smallText}>LOCATION:</Animated.Text>
                                 <Animated.Text style={styles.text}>{item.city} ({item.country})</Animated.Text>
                             </Animated.View>
                         </Animated.View>
-                        <Animated.View style={[styles.row, { height: '20%' }]}>
+                        <Animated.View style={styles.row}>
                             <Animated.View>
                                 <Animated.Text style={styles.smallText}>LENGTH (KM):</Animated.Text>
                                 <Animated.Text style={styles.text}>{item.length}</Animated.Text>
@@ -195,7 +202,7 @@ export default function App() {
                                 <Animated.Text style={styles.text}>{item.numberOfTurns}</Animated.Text>
                             </Animated.View>
                         </Animated.View>
-                        <Animated.View style={{ height: '20%' }}>
+                        <Animated.View>
                             <Animated.View>
                                 <Animated.Text style={styles.smallText}>FASTEST LAP:</Animated.Text>
                                 <Animated.Text style={styles.text}>{item.recordTime} ({item.recordDriver}, {item.recordYear})</Animated.Text>
@@ -209,41 +216,43 @@ export default function App() {
 
     return (
         <View style={styles.container}>
-            <View style={styles.row}>
-                <Checkbox
-                    value={useOriginalOrder}
-                    onValueChange={handleOriginalOrderChange}
-                    color={useOriginalOrder ? colors.primary : undefined}
+            <View style={{ alignItems: 'center', gap: 20 }}>
+                <View style={styles.row}>
+                    <Checkbox
+                        value={useOriginalOrder}
+                        onValueChange={handleOriginalOrderChange}
+                        color={useOriginalOrder ? colors.primary : undefined}
+                    />
+                    <Text style={styles.text}>Use F1 2026 season order</Text>
+                </View>
+                <FlatList
+                    ref={listRef}
+                    data={visibleCircuits}
+                    keyExtractor={item => item.id.toString()}
+                    renderItem={({ item, index }) => (
+                        <Card item={item} index={index} pan={pan} />
+                    )}
+                    horizontal
+                    bounces={false}
+                    showsHorizontalScrollIndicator={false}
+                    contentInsetAdjustmentBehavior='never'
+                    snapToAlignment='center'
+                    decelerationRate='fast'
+                    automaticallyAdjustContentInsets={false}
+                    showsVerticalScrollIndicator={false}
+                    scrollEventThrottle={1}
+                    snapToInterval={SCREEN_WIDTH}
+                    contentOffset={{ x: (SCREEN_WIDTH / 2) * -1, y: 0 }}
+                    onLayout={(e) => {
+                        setScrollViewWidth(e.nativeEvent.layout.width);
+                    }}
+                    onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: pan.x } } }], { useNativeDriver: false })}
+                    onMomentumScrollEnd={updateActiveIndex}
+                    onScrollEndDrag={updateActiveIndex}
+                    style={{ flexGrow: 0 }}
                 />
-                <Text style={[styles.text, { marginLeft: 10 }]}>Use F1 2026 order</Text>
+                <Text style={[styles.text, { opacity: 0.5 }]}>{activeIndex + 1}/{visibleCircuits.length}</Text>
             </View>
-
-            <FlatList
-                ref={listRef}
-                data={visibleCircuits}
-                keyExtractor={item => item.id.toString()}
-                renderItem={({ item, index }) => (
-                    <Card item={item} index={index} pan={pan} />
-                )}
-                horizontal
-                bounces={false}
-                showsHorizontalScrollIndicator={false}
-                contentInsetAdjustmentBehavior='never'
-                snapToAlignment='center'
-                decelerationRate='fast'
-                automaticallyAdjustContentInsets={false}
-                showsVerticalScrollIndicator={false}
-                scrollEventThrottle={1}
-                snapToInterval={SCREEN_WIDTH}
-                contentOffset={{ x: (SCREEN_WIDTH / 2) * -1, y: 0 }}
-                onLayout={(e) => {
-                    setScrollViewWidth(e.nativeEvent.layout.width);
-                }}
-                onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: pan.x } } }], { useNativeDriver: false })}
-                onMomentumScrollEnd={updateActiveIndex}
-                onScrollEndDrag={updateActiveIndex}
-            />
-            <Text style={styles.text}>{activeIndex + 1}/{visibleCircuits.length}</Text>
             <TouchableOpacity onPress={shuffleCards} style={styles.button}>
                 <Text style={styles.text}>Shuffle</Text>
             </TouchableOpacity>
