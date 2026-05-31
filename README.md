@@ -32,10 +32,10 @@ Download the latest Android APK from the [Releases](https://github.com/f1shuu/ci
 
 ## Screenshots
 
-<p align="center">
-    <img src="assets/images/readme/front.jpg" alt="Front side of a flashcard" width="250" style="margin: 0 2px;" />
-    <img src="assets/images/readme/back.jpg" alt="Back side of a flashcard" width="250" style="margin: 0 2px;" />
-</p>
+<div align="center" style="display:flex;justify-content:center;gap:10px;flex-wrap:nowrap;">
+   <img src="assets/images/readme/front.jpg" alt="Front side of a flashcard" width="250"/>
+   <img src="assets/images/readme/back.jpg" alt="Back side of a flashcard" width="250"/>
+</div>
 
 ## Tech Stack
 
